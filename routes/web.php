@@ -23,4 +23,7 @@ Route::get('/dashboard', function () {
 
 Route::resource('categorias', \App\Http\Controllers\CategoriaController::class)->middleware('auth');
 
+Route::get('login/github', [\App\Http\Controllers\LoginSocialController::class, 'redirectToGithub'])->name('login.github');
+
+Route::get('login/github/callback', [\App\Http\Controllers\LoginSocialController::class, 'handleGithubCallback'])->name('login.github.callback');
 require __DIR__.'/auth.php';

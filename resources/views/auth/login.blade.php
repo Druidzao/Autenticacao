@@ -12,6 +12,8 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
+        <p><a href="{{route('login.github')}}" class="btn btn-dark w-full">Login com GitHub</a><p>
+        
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
