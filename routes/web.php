@@ -24,6 +24,9 @@ Route::get('/dashboard', function () {
 Route::resource('categorias', \App\Http\Controllers\CategoriaController::class)->middleware('auth');
 
 Route::get('login/github', [\App\Http\Controllers\LoginSocialController::class, 'redirectToGithub'])->name('login.github');
-
 Route::get('login/github/callback', [\App\Http\Controllers\LoginSocialController::class, 'handleGithubCallback'])->name('login.github.callback');
+
+Route::get('login/google', [\App\Http\Controllers\LoginSocialController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('login/google/callback', [\App\Http\Controllers\LoginSocialController::class, 'handleGoogleCallback'])->name('login.google.callback');
+
 require __DIR__.'/auth.php';
