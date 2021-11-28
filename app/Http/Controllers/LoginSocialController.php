@@ -10,6 +10,30 @@ use Auth;
 class LoginSocialController extends Controller
 {
 
+    public function redirectToProvider($provider){
+        return Socialite::driver($provider)->redirect();
+    }
+
+    public function handleProviderCallback($provider){
+        $user = Socialite::driver($provider)->stateless()->user();
+        //\dd($user);
+        if ($this->loginOrRegister($user)){
+            return redirect()->route('dashboard');
+        }
+    }
+   /* 
+    public function redirectToFacebook(){
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function handleFacebookCallback(){
+        $user = Socialite::driver('facebook')->stateless()->user();
+        //\dd($user);
+        if ($this->loginOrRegister($user)){
+            return redirect()->route('dashboard');
+        }
+    }
+
     public function redirectToGoogle(){
         return Socialite::driver('google')->redirect();
     }
@@ -33,7 +57,7 @@ class LoginSocialController extends Controller
             return redirect()->route('dashboard');
         }
     }
-
+*/
     private function loginOrRegister($data){
         $user = User::where('email', '=', $data->email)->first();
 
